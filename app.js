@@ -15,7 +15,8 @@ app.post("/user/sigup", async (req, res) => {
     await User.create({ name, email, password });
     return res.status(201).json({ message: "success" });
   } catch (error) {
-    return res.status(500).json({ message: "Failed to create user" });
+    console.log(">>>>>>>>>>>>>>>>>",error.name);
+    return res.status(500).json({ message: "Failed to create user :", error: error.name });
   }
 });
 

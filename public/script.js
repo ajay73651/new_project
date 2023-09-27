@@ -23,7 +23,21 @@ document.addEventListener("DOMContentLoaded", function () {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data.user);
+        if (data.message == "success") {
+          swal.fire({
+            title: "User Created Successfully!",
+            icon: "success",
+            timer: 2000,
+            buttons: false,
+          });
+        } else if (data.error == "SequelizeUniqueConstraintError") {
+          swal.fire({
+            title: "User Already Exists",
+            icon: "info",
+            timer: 2000,
+            buttons: false,
+          });
+        }
       })
       .catch((error) => {
         console.error("Error:", error);
